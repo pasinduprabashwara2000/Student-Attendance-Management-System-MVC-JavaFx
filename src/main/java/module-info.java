@@ -4,7 +4,7 @@ module edu.ijse.mvc.fx.studentmanagementmvc {
     requires static lombok;
     requires java.sql;
 
-
     opens edu.ijse.mvc.fx to javafx.fxml;
+    opens edu.ijse.mvc.fx.view to javafx.fxml;
     exports edu.ijse.mvc.fx;
 }

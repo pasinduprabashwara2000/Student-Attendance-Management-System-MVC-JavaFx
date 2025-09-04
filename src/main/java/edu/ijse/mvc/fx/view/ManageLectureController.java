@@ -1,15 +1,15 @@
 package edu.ijse.mvc.fx.view;
 
+import edu.ijse.mvc.fx.controller.LectureController;
 import edu.ijse.mvc.fx.dto.LectureDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ManageLectureController {
+
+    private LectureController lectureController = new LectureController();
 
     @FXML
     private TableColumn<LectureDto, String> contactColmn;
@@ -57,22 +57,77 @@ public class ManageLectureController {
     private Button updateBtn;
 
     @FXML
-    void clear(ActionEvent event) {
+    public void initialize(){
+        idColmn.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
+        nameColmn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        contactColmn.setCellValueFactory(new PropertyValueFactory<>("contact_number"));
+        loadTabel();
+    }
 
+    @FXML
+    public void loadTabel(){
+
+        try {
+            detailsTabel.getItems().clear();
+            detailsTabel.getItems().addAll(lectureController.getAllLectures());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+
+    }
+
+    @FXML
+    void clear(ActionEvent event) {
+        idColmn.setText("");
+        nameColmn.setText("");
+        contactColmn.setText("");
     }
 
     @FXML
     void deleteLecture(ActionEvent event) {
-
+        try {
+            String rsp = lectureController.deleteLecture(idTxt.getText());
+            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+            clear(event);
+            loadTabel();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
     void saveLecture(ActionEvent event) {
-
+        try {
+            LectureDto lectureDto = new LectureDto(
+              idTxt.getText(),
+              nameTxt.getText(),
+              contactTxt.getText()
+            );
+            String rsp = lectureController.addLecture(lectureDto);
+            clear(event);
+            loadTabel();
+            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
     void updateLecture(ActionEvent event) {
+
+        try {
+            LectureDto lectureDto = new LectureDto(
+                    idTxt.getText(),
+                    nameTxt.getText(),
+                    contactTxt.getText()
+            );
+            String rsp = lectureController.updateLecture(lectureDto);
+            clear(event);
+            loadTabel();
+            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
     }
 

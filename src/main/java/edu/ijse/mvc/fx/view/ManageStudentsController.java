@@ -86,6 +86,8 @@ public class ManageStudentsController {
         try {
             String rsp = studentController.deleteStudent(Integer.parseInt(idTxt.getText()));
             new Alert(Alert.AlertType.WARNING,rsp).show();
+            clear(event);
+            loadTabel();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -101,6 +103,8 @@ public class ManageStudentsController {
               contactTxt.getText()
             );
             String rsp = studentController.addStudent(studentsDto);
+            clear(event);
+            loadTabel();
             new Alert(Alert.AlertType.INFORMATION,rsp).show();
 
         } catch (Exception e) {
@@ -117,6 +121,8 @@ public class ManageStudentsController {
               contactTxt.getText()
             );
             String rsp = studentController.updateStudent(studentsDto);
+            loadTabel();
+            clear(event);
             new Alert(Alert.AlertType.INFORMATION,rsp).show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();

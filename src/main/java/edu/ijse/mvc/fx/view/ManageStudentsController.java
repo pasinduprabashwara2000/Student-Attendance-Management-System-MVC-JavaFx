@@ -60,7 +60,7 @@ public class ManageStudentsController {
     public void initialize(){
         colId.setCellValueFactory(new PropertyValueFactory<>("regNum"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("contact_number"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contactDetails"));
         loadTabel();
     }
 

@@ -6,5 +6,7 @@ module edu.ijse.mvc.fx.studentmanagementmvc {
 
     opens edu.ijse.mvc.fx to javafx.fxml;
     opens edu.ijse.mvc.fx.view to javafx.fxml;
+    opens edu.ijse.mvc.fx.dto to javafx.base;
+
     exports edu.ijse.mvc.fx;
 }

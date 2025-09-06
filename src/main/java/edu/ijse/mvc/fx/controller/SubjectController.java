@@ -2,7 +2,6 @@ package edu.ijse.mvc.fx.controller;
 
 import edu.ijse.mvc.fx.dto.SubjectDto;
 import edu.ijse.mvc.fx.model.SubjectModel;
-
 import java.util.ArrayList;
 
 public class SubjectController {

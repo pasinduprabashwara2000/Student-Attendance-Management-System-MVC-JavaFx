@@ -2,7 +2,6 @@ package edu.ijse.mvc.fx.controller;
 
 import edu.ijse.mvc.fx.dto.EnrollDto;
 import edu.ijse.mvc.fx.model.EnrollModel;
-
 import java.util.ArrayList;
 
 public class EnrollController {

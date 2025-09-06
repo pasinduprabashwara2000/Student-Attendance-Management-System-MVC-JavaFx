@@ -14,9 +14,9 @@ public class SubjectModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO subject VALUES (?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, "subject_id");
-        st.setString(2, "name");
-        st.setString(3, "course_id");
+        st.setString(1, subjectDto.getSubjectID());
+        st.setString(2, subjectDto.getName());
+        st.setString(3, subjectDto.getCourseID());
 
         return st.executeUpdate() > 0 ? "Subject Saved Successfully" : "Subject Saved Failed";
 
@@ -25,11 +25,11 @@ public class SubjectModel {
     public String updateSubject(SubjectDto subjectDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE subject SET name = ? , course_id = ? WHERE subject_id = ?";
+        String sql = "UPDATE subject SET subject_name = ? , course_id = ? WHERE subject_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, "name");
-        st.setString(2, "course_id");
-        st.setString(3, "subject_id");
+        st.setString(1, subjectDto.getName());
+        st.setString(2, subjectDto.getCourseID());
+        st.setString(3, subjectDto.getSubjectID());
 
         return st.executeUpdate() > 0 ? "Subject Updated Successfully" : "Subject Updated Failed";
 
@@ -40,24 +40,25 @@ public class SubjectModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "DELETE FROM subject WHERE subject_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, "subject_id");
+        st.setString(1, subject_id);
 
         return st.executeUpdate() > 0 ? "Subject Deleted Successfully" : "Subject Deleted Failed";
 
     }
 
-    public SubjectDto searchSubject(String id) throws Exception {
+    public SubjectDto searchSubject(String subject_id) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM subject WHERE subject_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,subject_id);
 
         ResultSet rst = st.executeQuery();
 
         if (rst.next()) {
             return new SubjectDto(
                     rst.getString("subject_id"),
-                    rst.getString("name"),
+                    rst.getString("subject_name"),
                     rst.getString("course_id")
             );
         }
@@ -79,7 +80,7 @@ public class SubjectModel {
         while (rst.next()) {
             subjectDtos.add(new SubjectDto(
                     rst.getString("subject_id"),
-                    rst.getString("name"),
+                    rst.getString("subject_name"),
                     rst.getString("course_id")
             ));
         }

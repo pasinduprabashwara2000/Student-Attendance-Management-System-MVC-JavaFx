@@ -85,7 +85,7 @@ public class ManageStudentsController {
     void deleteStudents(ActionEvent event) {
         try {
             String rsp = studentController.deleteStudent(Integer.parseInt(idTxt.getText()));
-            new Alert(Alert.AlertType.WARNING,rsp).show();
+            new Alert(Alert.AlertType.INFORMATION,rsp).show();
             clear(event);
             loadTabel();
         } catch (Exception e) {

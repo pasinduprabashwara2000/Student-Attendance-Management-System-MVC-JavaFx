@@ -45,7 +45,7 @@ public class ManageAttendanceController {
     private Button deleteBtn;
 
     @FXML
-    private TableView<?> detailsTable;
+    private TableView <AttendanceDto> detailsTable;
 
     @FXML
     private TextField lectureTxt;
@@ -57,7 +57,7 @@ public class ManageAttendanceController {
     private Button saveBtn;
 
     @FXML
-    private ComboBox<?> statusPicker;
+    private ComboBox <String> statusPicker;
 
     @FXML
     private TextField studentTxt;
@@ -76,8 +76,8 @@ public class ManageAttendanceController {
         colId.setCellValueFactory(new PropertyValueFactory<>("attendanceId"));
         colLectureId.setCellValueFactory(new PropertyValueFactory<>("lectureId"));
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
-        colCourseName.setCellValueFactory(new PropertyValueFactory<>("courseId"));
-        colSubjectName.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        colCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        colSubjectName.setCellValueFactory(new PropertyValueFactory<>("subjectName"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         loadTable();
@@ -100,7 +100,7 @@ public class ManageAttendanceController {
         courseTxt.setText("");
         subjectTxt.setText("");
         datePicker.setValue(null);
-        statusPicker
+        statusPicker.setValue(null);
     }
 
     @FXML
@@ -110,12 +110,44 @@ public class ManageAttendanceController {
 
     @FXML
     void navigateSave(ActionEvent event) {
-
+        try {
+            AttendanceDto attendanceDto = new AttendanceDto(
+                    1,
+                    datePicker.getValue(),
+                    studentTxt.getText(),
+                    lectureTxt.getText(),
+                    courseTxt.getText(),
+                    subjectTxt.getText(),
+                    statusPicker.getValue()
+            );
+            String rsp = attendanceController.addAttendance(attendanceDto);
+            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+            Clear(event);
+            loadTable();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     @FXML
     void navigateUpdate(ActionEvent event) {
-
+            try{
+                AttendanceDto attendanceDto = new AttendanceDto(
+                        1,
+                        datePicker.getValue(),
+                        studentTxt.getText(),
+                        lectureTxt.getText(),
+                        courseTxt.getText(),
+                        subjectTxt.getText(),
+                        statusPicker.getValue()
+                );
+                String rsp = attendanceController.updateAttendance(attendanceDto);
+                new Alert(Alert.AlertType.INFORMATION,rsp).show();
+                Clear(event);
+                loadTable();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
     }
 
 }

@@ -49,7 +49,7 @@ public class ManageCourseController {
 
     @FXML
     public void initialize(){
-        colId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("courseID"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         loadTabel();
     }

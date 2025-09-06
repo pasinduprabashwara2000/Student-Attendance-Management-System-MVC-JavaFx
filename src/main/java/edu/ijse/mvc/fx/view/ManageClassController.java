@@ -76,10 +76,10 @@ public class ManageClassController {
 
     @FXML
     public void initialize(){
-        classId.setCellValueFactory(new PropertyValueFactory<>("class_id"));
-        subjectId.setCellValueFactory(new PropertyValueFactory<>("subject_id"));
-        courseId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
-        lectureId.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
+        classId.setCellValueFactory(new PropertyValueFactory<>("classId"));
+        subjectId.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        courseId.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        lectureId.setCellValueFactory(new PropertyValueFactory<>("lectureId"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         loadTable();
     }
@@ -108,6 +108,8 @@ public class ManageClassController {
         try{
             String rsp = classController.deleteClass(idTxt.getText());
             new Alert(Alert.AlertType.INFORMATION,rsp).show();
+            clear(event);
+            loadTable();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }

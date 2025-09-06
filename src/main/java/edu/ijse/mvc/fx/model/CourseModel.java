@@ -16,8 +16,8 @@ public class CourseModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO course VALUES (?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"course_id");
-        st.setString(2,"name");
+        st.setString(1,courseDto.getCourseID());
+        st.setString(2,courseDto.getName());
 
         return st.executeUpdate() > 0 ? "Course Saved Successfully" : "Course Saved Failed";
 
@@ -26,10 +26,10 @@ public class CourseModel {
     public String updateCourse(CourseDto courseDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE course SET name = ? , WHERE course_id = ? ";
+        String sql = "UPDATE course SET name = ? WHERE course_id = ? ";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"course_id");
-        st.setString(2,"name");
+        st.setString(1,courseDto.getName());
+        st.setString(2,courseDto.getCourseID());
 
         return st.executeUpdate() > 0 ? "Course Updated Successfully" : "Course Updated Failed";
 
@@ -40,7 +40,7 @@ public class CourseModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "DELETE FROM course WHERE course_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"course_id");
+        st.setString(1,course_id);
 
         return st.executeUpdate() > 0 ? "Course Deleted Successfully" : "Course Deleted Failed";
 

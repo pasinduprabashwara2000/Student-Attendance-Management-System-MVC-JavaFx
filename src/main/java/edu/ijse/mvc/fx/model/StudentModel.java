@@ -12,7 +12,7 @@ public class StudentModel {
     public String addStudent(StudentsDto studentsDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "INSERT INTO Student VALUES (?,?,?)";
+        String sql = "INSERT INTO student VALUES (?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setInt(1,studentsDto.getRegNum());
         st.setString(2,studentsDto.getName());
@@ -38,7 +38,7 @@ public class StudentModel {
     public String deleteStudent(Integer reg_num) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "DELETE FROM Student WHERE reg_number = ?";
+        String sql = "DELETE FROM student WHERE reg_number = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setInt(1,reg_num);
 
@@ -49,7 +49,7 @@ public class StudentModel {
     public StudentsDto searchStudent(Integer reg_num) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM Student WHERE reg_number = ?";
+        String sql = "SELECT * FROM student WHERE reg_number = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setInt(1, reg_num);
 

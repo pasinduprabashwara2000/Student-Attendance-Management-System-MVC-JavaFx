@@ -14,9 +14,9 @@ public class LectureModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO lecture VALUES (?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"lecture_id");
-        st.setString(2,"name");
-        st.setString(3,"contact_number");
+        st.setString(1,lectureDto.getLectureID());
+        st.setString(2,lectureDto.getName());
+        st.setString(3,lectureDto.getContact_number());
 
         return st.executeUpdate() > 0 ? "Lecture Added Successfully" : "Lecture Added Failed";
 
@@ -25,11 +25,11 @@ public class LectureModel {
     public String updateLecture(LectureDto lectureDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE lecture SET name = ? , contact_number = ? , WHERE lecture_id = ?";
+        String sql = "UPDATE lecture SET name = ? , contact_details = ? WHERE lecture_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"name");
-        st.setString(2,"contact_number");
-        st.setString(3,"lecture_id");
+        st.setString(1,lectureDto.getName());
+        st.setString(2,lectureDto.getContact_number());
+        st.setString(3,lectureDto.getLectureID());
 
         return st.executeUpdate() > 0 ? "Lecture Updated Successfully" : "Lecture Updated Failed";
 
@@ -40,7 +40,7 @@ public class LectureModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "DELETE FROM lecture WHERE lecture_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1,"lecture_id");
+        st.setString(1,lecture_id);
 
         return st.executeUpdate() > 0 ? "Lecture Deleted Successfully" : "Lecture Deleted Failed";
 
@@ -58,7 +58,7 @@ public class LectureModel {
             return new LectureDto(
               rst.getString("lecture_id"),
               rst.getString("name"),
-              rst.getString("contact_number")
+              rst.getString("contact_details")
             );
         }
 
@@ -71,7 +71,7 @@ public class LectureModel {
         ArrayList <LectureDto> lectureDtos = new ArrayList<>();
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM lecture_id = ?";
+        String sql = "SELECT * FROM lecture";
         PreparedStatement st = conn.prepareStatement(sql);
 
         ResultSet rst = st.executeQuery();
@@ -80,7 +80,7 @@ public class LectureModel {
             lectureDtos.add(new LectureDto(
                 rst.getString("lecture_id"),
                 rst.getString("name"),
-                rst.getString("contact_number")
+                rst.getString("contact_details")
             ));
         }
 

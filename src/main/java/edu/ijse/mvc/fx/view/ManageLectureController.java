@@ -58,7 +58,7 @@ public class ManageLectureController {
 
     @FXML
     public void initialize(){
-        idColmn.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
+        idColmn.setCellValueFactory(new PropertyValueFactory<>("lectureID"));
         nameColmn.setCellValueFactory(new PropertyValueFactory<>("name"));
         contactColmn.setCellValueFactory(new PropertyValueFactory<>("contact_number"));
         loadTabel();

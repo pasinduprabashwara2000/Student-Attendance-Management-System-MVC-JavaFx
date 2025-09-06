@@ -58,9 +58,9 @@ public class ManageSubjectsController {
 
     @FXML
     public void initialize(){
-        subject_id.setCellValueFactory(new PropertyValueFactory<>("subject_id"));
-        subject_name.setCellValueFactory(new PropertyValueFactory<>("subject_name"));
-        course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        subject_id.setCellValueFactory(new PropertyValueFactory<>("subjectID"));
+        subject_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("courseID"));
         loadTabel();
     }
 

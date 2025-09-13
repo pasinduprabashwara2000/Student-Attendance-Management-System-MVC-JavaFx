@@ -1,0 +1,55 @@
+.anchor-pane {
+    -fx-background-color: #f4f6f9;
+    -fx-padding: 15;
+}
+
+.label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 15px;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 6;
+    -fx-font-size: 15px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.3), 5, 0, 0, 2);
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 6 12;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button:pressed {
+    -fx-background-color: #2471a3;
+}
+
+#deleteBtn {
+    -fx-background-color: #e74c3c;
+}
+#deleteBtn:hover {
+    -fx-background-color: #c0392b;
+}
+
+#resetBtn {
+    -fx-background-color: #95a5a6;
+}
+#resetBtn:hover {
+    -fx-background-color: #7f8c8d;
+}

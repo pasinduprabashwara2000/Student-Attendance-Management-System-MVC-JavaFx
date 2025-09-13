@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.mvc.fx.view.MainMenuController">
+    <children>
+        <VBox prefHeight="400.0" prefWidth="290.0" stylesheets="@css/style.css" />
+        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="16.0" prefHeight="40.0" prefWidth="318.0" stylesheets="@css/style.css" text="Main Menu">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Hyperlink fx:id="tradeMarkLabel" layoutX="33.0" layoutY="551.0" prefHeight="24.0" prefWidth="272.0" stylesheets="@css/style.css" text="© 2025 Sample IT System. All rights reserved.">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Hyperlink>
+        <Button fx:id="studentsBtn" layoutX="51.0" layoutY="75.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Students">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="lecturesBtn" layoutX="51.0" layoutY="126.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Lectures">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="coursesBtn" layoutX="51.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Courses">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="classesBtn" layoutX="52.0" layoutY="284.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Classes">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="logOutBtn" layoutX="52.0" layoutY="490.0" mnemonicParsing="false" onAction="#navigateLogOut" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Log Out">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="attendenceBtn" layoutX="52.0" layoutY="386.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Attendance">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="subjectsBtn" layoutX="52.0" layoutY="178.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Subjects">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="reportsBtn" layoutX="51.0" layoutY="437.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Attendance Reports">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="enrollBtn" layoutX="52.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="233.0" stylesheets="@css/style.css" text="Manage Enroll">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+      <AnchorPane fx:id="contentPane" layoutX="314.0" prefHeight="768.0" prefWidth="1052.0" stylesheets="@css/style.css" />
+    </children>
+</AnchorPane>

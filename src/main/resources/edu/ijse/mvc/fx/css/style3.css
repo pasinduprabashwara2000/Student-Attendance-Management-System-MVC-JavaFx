@@ -1,0 +1,79 @@
+.anchor-pane {
+    -fx-background-color: #f8f9fa;
+}
+
+#titleLabel {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 10 0 20 0;
+}
+
+#tradeMarkLabel {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 12px;
+    -fx-underline: false;
+}
+
+#nameLabel,
+#passwordLabel,
+#roleLabel {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+}
+
+.text-field,
+.password-field,
+.choice-box {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 15px;
+    -fx-text-fill: #2c3e50;
+}
+
+.text-field:focused,
+.password-field:focused,
+.choice-box:focused {
+    -fx-border-color: #28a745;
+    -fx-border-width: 2;
+}
+
+#loginBtn {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #28a745, #1e7e34);
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 0, 0);
+}
+
+#loginBtn:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #1e7e34, #28a745);
+    -fx-text-fill: #ffffff;
+}
+
+#clearBtn {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #ff5858, #f857a6);
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+}
+
+#clearBtn:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #ff416c, #ff4b2b);
+}
+
+.image-view {
+    -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 0, 0);
+    -fx-border-radius: 5px;
+}
+
+#contentPane {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1 0 0 1;
+}

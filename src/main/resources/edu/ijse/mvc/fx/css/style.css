@@ -1,0 +1,48 @@
+.anchor-pane {
+    -fx-background-color: #f8f9fa;
+}
+
+#titleLabel {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 10 0 20 0;
+}
+
+#tradeMarkLabel {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 12px;
+    -fx-underline: false;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to right, #28a745, #1e7e34);
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, #eeeeee, 10, 0, 0, 0);
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #1e7e34, #28a745);
+    -fx-text-fill: #ffffff;
+}
+
+#logOutBtn {
+    -fx-background-color: linear-gradient(to right, #ff5858, #f857a6);
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+}
+
+#logOutBtn:hover {
+    -fx-background-color: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+#contentPane {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px 0 0 1px;
+}

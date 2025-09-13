@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.mvc.fx.view.ManageAttendanceReportController">
+    <children>
+      <Label fx:id="titleLabel" layoutX="57.0" layoutY="16.0" prefHeight="43.0" prefWidth="909.0" text="Manage Attendance Report">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+        <Label layoutX="48.0" layoutY="98.0" stylesheets="@css/style2.css" text="From:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <DatePicker fx:id="fromDatePicker" layoutX="100.0" layoutY="91.0" prefHeight="39.0" prefWidth="189.0" stylesheets="@css/style2.css" />
+
+        <Label layoutX="305.0" layoutY="98.0" stylesheets="@css/style2.css" text="To:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <DatePicker fx:id="toDatePicker" layoutX="340.0" layoutY="91.0" prefHeight="39.0" prefWidth="189.0" stylesheets="@css/style2.css" />
+
+        <Button fx:id="filterBtn" layoutX="550.0" layoutY="91.0" onAction="#onFilter" prefHeight="39.0" prefWidth="100.0" stylesheets="@css/style2.css" text="Filter">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+
+        <TableView fx:id="tableView" layoutX="46.0" layoutY="168.0" prefHeight="553.0" prefWidth="964.0" stylesheets="@css/style2.css">
+            <columns>
+                <TableColumn fx:id="colDate" prefWidth="124.0" text="Date" />
+                <TableColumn fx:id="colLectureId" prefWidth="170.0" text="Lecture ID" />
+                <TableColumn fx:id="colStudentName" prefWidth="180.0" text="Student Name" />
+                <TableColumn fx:id="colCourseName" prefWidth="157.0" text="Course Name" />
+                <TableColumn fx:id="colSubjectName" prefWidth="204.0" text="Subject Name" />
+                <TableColumn fx:id="colStatus" prefWidth="128.0" text="Status" />
+            </columns>
+        </TableView>
+      <Button fx:id="reportBtn" layoutX="664.0" layoutY="91.0" onAction="#genarateReport" prefHeight="39.0" prefWidth="189.0" style="-fx-background-color: green;" stylesheets="@css/style2.css" text="Genarate Report">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

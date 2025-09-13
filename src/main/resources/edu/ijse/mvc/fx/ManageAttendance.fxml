@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="612.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.mvc.fx.view.ManageAttendanceController">
+
+    <children>
+        <!-- Title -->
+        <Label fx:id="titleLabel" layoutX="38.0" layoutY="21.0" prefHeight="39.0" prefWidth="918.0" text="Attendance Management System">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+
+        <!-- Buttons -->
+        <Button fx:id="saveBtn" layoutX="286.0" layoutY="265.0" mnemonicParsing="false" onAction="#navigateSave" prefHeight="29.0" prefWidth="89.0" stylesheets="@css/style2.css" text="Save">
+            <font><Font name="System Bold" size="14.0" /></font>
+        </Button>
+        <Button fx:id="updateBtn" layoutX="414.0" layoutY="265.0" mnemonicParsing="false" onAction="#navigateUpdate" prefHeight="29.0" prefWidth="89.0" stylesheets="@css/style2.css" text="Update">
+            <font><Font name="System Bold" size="14.0" /></font>
+        </Button>
+        <Button fx:id="deleteBtn" layoutX="534.0" layoutY="265.0" mnemonicParsing="false" onAction="#navigateDelete" prefHeight="29.0" prefWidth="89.0" stylesheets="@css/style2.css" text="Delete">
+            <font><Font name="System Bold" size="14.0" /></font>
+        </Button>
+        <Button fx:id="resetBtn" layoutX="650.0" layoutY="265.0" mnemonicParsing="false" onAction="#Clear" prefHeight="29.0" prefWidth="89.0" stylesheets="@css/style2.css" text="Reset">
+            <font><Font name="System Bold" size="14.0" /></font>
+        </Button>
+
+        <!-- Labels -->
+        <Label layoutX="41.0" layoutY="87.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Date :">
+            <font><Font size="15.0" /></font>
+        </Label>
+        <Label layoutX="538.0" layoutY="88.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Lecture ID :">
+            <font><Font size="15.0" /></font>
+        </Label>
+        <Label layoutX="41.0" layoutY="141.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Student Name :">
+            <font><Font size="15.0" /></font>
+        </Label>
+        <Label layoutX="537.0" layoutY="141.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Course Name :">
+            <font><Font size="15.0" /></font>
+        </Label>
+        <Label layoutX="41.0" layoutY="195.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Subject Name :">
+            <font><Font size="15.0" /></font>
+        </Label>
+        <Label layoutX="538.0" layoutY="195.0" prefHeight="30.0" prefWidth="128.0" stylesheets="@css/style2.css" text="Status :">
+            <font><Font size="15.0" /></font>
+        </Label>
+
+        <!-- Inputs -->
+        <DatePicker fx:id="datePicker" layoutX="239.0" layoutY="88.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css" />
+        <TextField fx:id="lectureTxt" layoutX="666.0" layoutY="88.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css" />
+        <TextField fx:id="studentTxt" layoutX="239.0" layoutY="141.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css" />
+        <TextField fx:id="courseTxt" layoutX="666.0" layoutY="141.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css" />
+        <TextField fx:id="subjectTxt" layoutX="239.0" layoutY="195.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css" />
+
+        <ComboBox fx:id="statusPicker" layoutX="666.0" layoutY="195.0" prefHeight="30.0" prefWidth="221.0" stylesheets="@css/style2.css">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Present" />
+                    <String fx:value="Absent" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <!-- Table -->
+        <TableView fx:id="detailsTable" layoutX="45.0" layoutY="334.0" prefHeight="257.0" prefWidth="966.0" stylesheets="@css/style2.css">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="colDate" prefWidth="150.0" text="Date" />
+                <TableColumn fx:id="colLectureId" prefWidth="150.0" text="Lecture_id" />
+                <TableColumn fx:id="colStudentName" prefWidth="180.0" text="Student_name" />
+                <TableColumn fx:id="colCourseName" prefWidth="200.0" text="Course_name" />
+                <TableColumn fx:id="colSubjectName" prefWidth="146.0" text="Subject_name" />
+                <TableColumn fx:id="colStatus" prefWidth="89.0" text="Status" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

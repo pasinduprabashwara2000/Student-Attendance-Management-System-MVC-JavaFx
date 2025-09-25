@@ -56,9 +56,9 @@ public class ManageSubjectsController {
     @FXML
     public void initialize() {
 
-        subject_id.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        subject_id.setCellValueFactory(new PropertyValueFactory<>("subjectID"));
         subject_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        course_id.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("courseID"));
 
         loadAllSubjects();
     }
@@ -72,6 +72,13 @@ public class ManageSubjectsController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+
+        detailsTable.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 1){
+                searchSubject();
+            }
+        });
+
     }
 
     @FXML
@@ -142,5 +149,25 @@ public class ManageSubjectsController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    public void searchSubject(){
+
+        SubjectDto getSelectedItem = detailsTable.getSelectionModel().getSelectedItem();
+
+        if(getSelectedItem == null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Row").showAndWait();
+        }
+
+        try {
+            SubjectDto subjectDto = subjectController.searchSubject(getSelectedItem.getSubjectID());
+            idTxt.setText(subjectDto.getSubjectID());
+            nameTxt.setText(subjectDto.getName());
+            courseTxt.setText(subjectDto.getCourseID());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.INFORMATION,e.getMessage()).showAndWait();
+        }
+
     }
 }

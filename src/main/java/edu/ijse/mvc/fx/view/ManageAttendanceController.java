@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -110,6 +111,12 @@ public class ManageAttendanceController {
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
+
+        detailsTable.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 1){
+                searchAttendance();
+            }
+        });
     }
 
     @FXML
@@ -177,6 +184,26 @@ public class ManageAttendanceController {
             } catch (Exception e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
+    }
+
+    @FXML
+    public void searchAttendance(){
+        AttendanceDto getSelectedAttendance = detailsTable.getSelectionModel().getSelectedItem();
+        if(getSelectedAttendance == null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Row");
+        }
+
+        try {
+            AttendanceDto attendanceDto = attendanceController.searchAttendance(getSelectedAttendance.getAttendanceId());
+                    datePicker.setValue(attendanceDto.getDate());
+                    studentTxt.setText(attendanceDto.getStudentName());
+                    lectureTxt.setText(attendanceDto.getLectureId());
+                    courseTxt.setText(attendanceDto.getCourseName());
+                    subjectTxt.setText(attendanceDto.getSubjectName());
+                    statusPicker.setValue(attendanceDto.getStatus());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage());
+        }
     }
 
 }

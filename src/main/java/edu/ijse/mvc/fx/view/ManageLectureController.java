@@ -63,9 +63,6 @@ public class ManageLectureController {
         contactColmn.setCellValueFactory(new PropertyValueFactory<>("contact_number"));
         loadTabel();
 
-        detailsTabel.setOnMouseClicked(event -> {
-            searchLecture();
-        });
     }
 
     @FXML
@@ -77,6 +74,12 @@ public class ManageLectureController {
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
+
+        detailsTabel.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 1){
+                searchLecture();
+            }
+        });
 
     }
 
@@ -139,7 +142,7 @@ public class ManageLectureController {
 
         LectureDto getSelectedLecture = detailsTabel.getSelectionModel().getSelectedItem();
             if(getSelectedLecture == null){
-                new Alert(Alert.AlertType.WARNING,"Please SELECT RAW");
+                new Alert(Alert.AlertType.WARNING,"Please Select Row").showAndWait();
             }
 
         try {
@@ -148,7 +151,7 @@ public class ManageLectureController {
             nameTxt.setText(lectureDto.getName());
             contactTxt.setText(lectureDto.getContact_number());
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
         }
 
     }

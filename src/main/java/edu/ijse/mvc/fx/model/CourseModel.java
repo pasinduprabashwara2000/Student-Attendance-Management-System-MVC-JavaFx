@@ -51,6 +51,7 @@ public class CourseModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM course WHERE course_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,course_id);
 
         ResultSet rst = st.executeQuery();
 

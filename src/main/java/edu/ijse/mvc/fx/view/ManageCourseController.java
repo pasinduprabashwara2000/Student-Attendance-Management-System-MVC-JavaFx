@@ -52,13 +52,6 @@ public class ManageCourseController {
         colId.setCellValueFactory(new PropertyValueFactory<>("courseID"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         loadTabel();
-
-        detailsTabel.setOnMouseClicked(event -> {
-            if(event.getClickCount() == 1){
-                searchCourse();
-            }
-        });
-
     }
 
     @FXML
@@ -67,8 +60,15 @@ public class ManageCourseController {
             detailsTabel.getItems().clear();
             detailsTabel.getItems().addAll(courseController.getAllCourse());
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
         }
+
+        detailsTabel.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 1){
+                searchCourse();
+            }
+        });
+
     }
 
     @FXML
@@ -126,7 +126,7 @@ public class ManageCourseController {
         CourseDto getSelectCourse = detailsTabel.getSelectionModel().getSelectedItem();
 
         if(getSelectCourse == null){
-            new Alert(Alert.AlertType.WARNING,"Please Select Raw").show();
+            new Alert(Alert.AlertType.WARNING,"Please Select Row").showAndWait();
         }
 
         try {
@@ -134,7 +134,7 @@ public class ManageCourseController {
             idTxt.setText(courseDto.getCourseID());
             nameTxt.setText(courseDto.getName());
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
         }
     }
 }

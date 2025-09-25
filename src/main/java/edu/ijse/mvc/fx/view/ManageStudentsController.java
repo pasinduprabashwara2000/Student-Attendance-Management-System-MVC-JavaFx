@@ -140,7 +140,7 @@ public class ManageStudentsController {
         StudentsDto selectedItem = detailsTabel.getSelectionModel().getSelectedItem();
 
         if(selectedItem == null){
-            new Alert(Alert.AlertType.WARNING,"Please Select Raw").show();
+            new Alert(Alert.AlertType.WARNING,"Please Select Row").showAndWait();
         }
 
         try {
@@ -149,7 +149,7 @@ public class ManageStudentsController {
                 nameTxt.setText(studentsDto.getName());
                 contactTxt.setText(studentsDto.getContactDetails());
         } catch (Exception e) {
-                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
         }
 
     }

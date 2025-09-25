@@ -51,6 +51,7 @@ public class LectureModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM lecture WHERE lecture_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,lecture_id);
 
         ResultSet rst = st.executeQuery();
 

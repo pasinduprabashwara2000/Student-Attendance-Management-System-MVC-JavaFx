@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="612.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.layered.fx.view.ManageSubjectsController">
+<AnchorPane prefHeight="612.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.mvc.fx.view.ManageSubjectsController">
     <children>
         <Label fx:id="titleLabel" layoutX="53.0" layoutY="31.0" prefHeight="39.0" prefWidth="998.0" text="Subject Management System">
             <font>
@@ -67,9 +67,9 @@
         </TextField>
         <TableView fx:id="detailsTable" layoutX="51.0" layoutY="265.0" prefHeight="331.0" prefWidth="956.0" stylesheets="@css/style2.css">
             <columns>
-                <TableColumn fx:id="subject_id" prefWidth="285.0" text="subject_id" />
-                <TableColumn fx:id="course_id" prefWidth="322.0" text="subject_name" />
-                <TableColumn fx:id="subject_name" prefWidth="348.0" text="course_id" />
+                <TableColumn fx:id="course_id" prefWidth="285.0" text="course_id" />
+                <TableColumn fx:id="subject_id" prefWidth="322.0" text="subject_id" />
+                <TableColumn fx:id="subject_name" prefWidth="348.0" text="subject_name" />
             </columns>
         </TableView>
     </children>

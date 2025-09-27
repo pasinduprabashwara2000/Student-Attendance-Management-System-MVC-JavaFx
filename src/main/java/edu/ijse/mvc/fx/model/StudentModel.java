@@ -25,7 +25,7 @@ public class StudentModel {
     public String updateStudent(StudentsDto studentsDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE student SET contact_details = ? ,SET name = ? WHERE reg_number = ?";
+        String sql = "UPDATE student SET name = ? , contact_details = ? WHERE reg_number = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1,studentsDto.getName());
         st.setString(2,studentsDto.getContactDetails());

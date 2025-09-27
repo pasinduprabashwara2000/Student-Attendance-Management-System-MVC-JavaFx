@@ -53,8 +53,8 @@
          </font></Button>
       <TableView fx:id="detailsTabel" layoutX="45.0" layoutY="202.0" onMouseClicked="#searchCourse" prefHeight="453.0" prefWidth="957.0" stylesheets="@css/style2.css">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="215.0" text="Course_ID" />
-          <TableColumn fx:id="colName" prefWidth="741.0" text="Course_Name" />
+          <TableColumn fx:id="colId" prefWidth="215.0" text="Course ID" />
+          <TableColumn fx:id="colName" prefWidth="741.0" text="Course Name" />
         </columns>
       </TableView>
    </children>

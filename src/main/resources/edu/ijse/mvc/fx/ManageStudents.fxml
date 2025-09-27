@@ -64,9 +64,9 @@
          </font></TextField>
       <TableView fx:id="detailsTabel" layoutX="41.0" layoutY="255.0" onMouseClicked="#selectStudent" prefHeight="331.0" prefWidth="967.0" stylesheets="@css/style2.css">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="171.0" text="Student_id" />
-          <TableColumn fx:id="colName" prefWidth="447.0" text="Student_name" />
-            <TableColumn fx:id="colContact" prefWidth="366.0" text="Contact_number" />
+          <TableColumn fx:id="colId" prefWidth="171.0" text="Student ID" />
+          <TableColumn fx:id="colName" prefWidth="447.0" text="Student Name" />
+            <TableColumn fx:id="colContact" prefWidth="366.0" text="Contact Number" />
         </columns>
       </TableView>
    </children>

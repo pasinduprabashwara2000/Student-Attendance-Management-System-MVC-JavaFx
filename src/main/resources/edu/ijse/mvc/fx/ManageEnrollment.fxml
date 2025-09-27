@@ -62,13 +62,11 @@
             <Font size="15.0" />
          </font>
       </TextField>
-
-      <!-- Table -->
-      <TableView fx:id="detailsTable" layoutX="41.0" layoutY="200.0" prefHeight="513.0" prefWidth="957.0" stylesheets="@css/style2.css">
-         <columns>
-            <TableColumn fx:id="colRegNum" prefWidth="330.0" text="Reg_num" />
-            <TableColumn fx:id="colCourseId" prefWidth="334.0" text="Course_id" />
-         </columns>
+      <TableView fx:id="detailsTable" layoutX="48.0" layoutY="208.0" prefHeight="510.0" prefWidth="950.0">
+        <columns>
+          <TableColumn fx:id="colRegNum" prefWidth="268.0" text="Register Number" />
+          <TableColumn fx:id="colCourseId" minWidth="0.0" prefWidth="279.0" text="Course ID" />
+        </columns>
       </TableView>
    </children>
 </AnchorPane>

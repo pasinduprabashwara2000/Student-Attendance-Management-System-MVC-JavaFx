@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
+
 public class ManageClassController {
 
     private final ClassController classController = new ClassController();
@@ -21,7 +23,7 @@ public class ManageClassController {
     private TextField courseTxt;
 
     @FXML
-    private TableColumn<ClassDto, String> date;
+    private TableColumn<ClassDto, LocalDate> date;
 
     @FXML
     private Label dateLabel;
@@ -69,28 +71,29 @@ public class ManageClassController {
     private TextField subjectTxt;
 
     @FXML
-    private Label titleLabel;
-
-    @FXML
     private Button updateBtn;
 
     @FXML
-    public void initialize(){
+    private void initialize() {
+
         classId.setCellValueFactory(new PropertyValueFactory<>("classId"));
         subjectId.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
         courseId.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         lectureId.setCellValueFactory(new PropertyValueFactory<>("lectureId"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
+
         loadTable();
     }
 
     @FXML
-    public void loadTable(){
-        try{
+    private void loadTable() {
+        try {
             detailsTabel.getItems().clear();
             detailsTabel.getItems().addAll(classController.getAllClass());
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
 
         detailsTabel.setOnMouseClicked(event -> {
@@ -102,81 +105,98 @@ public class ManageClassController {
 
     @FXML
     void clear(ActionEvent event) {
-        idTxt.setText("");
-        subjectTxt.setText("");
-        courseTxt.setText("");
-        lectureTxt.setText("");
+        idTxt.clear();
+        courseTxt.clear();
+        subjectTxt.clear();
+        lectureTxt.clear();
         dateTxt.setValue(null);
-    }
-
-    @FXML
-    void deleteClasses(ActionEvent event) {
-        try{
-            String rsp = classController.deleteClass(idTxt.getText());
-            new Alert(Alert.AlertType.INFORMATION,rsp).show();
-            clear(event);
-            loadTable();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
+        detailsTabel.getSelectionModel().clearSelection();
     }
 
     @FXML
     void saveClasses(ActionEvent event) {
         try {
-            ClassDto classDto = new ClassDto(
-              idTxt.getText(),
-              subjectTxt.getText(),
-              courseTxt.getText(),
-              lectureTxt.getText(),
-              dateTxt.getValue()
+            ClassDto classesDto = new ClassDto(
+                    idTxt.getText(),
+                    courseTxt.getText(),
+                    subjectTxt.getText(),
+                    lectureTxt.getText(),
+                    dateTxt.getValue()
             );
-            String rsp = classController.addClass(classDto);
-            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+
+            String rsp = classController.addClass(classesDto);
             clear(event);
             loadTable();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(rsp);
+            alert.showAndWait();
+
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
     @FXML
     void updateClasses(ActionEvent event) {
         try {
-            ClassDto classDto = new ClassDto(
+            ClassDto classesDto = new ClassDto(
                     idTxt.getText(),
-                    subjectTxt.getText(),
                     courseTxt.getText(),
+                    subjectTxt.getText(),
                     lectureTxt.getText(),
                     dateTxt.getValue()
             );
-            String rsp = classController.updateClass(classDto);
-            new Alert(Alert.AlertType.INFORMATION,rsp).show();
+
+            String rsp = classController.updateClass(classesDto);
             clear(event);
             loadTable();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(rsp);
+            alert.showAndWait();
+
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
     @FXML
-    public void searchClasses(){
-
-        ClassDto getSelectedClass = detailsTabel.getSelectionModel().getSelectedItem();
-        if(getSelectedClass == null){
-            new Alert(Alert.AlertType.ERROR,"Please Select Row").showAndWait();
-        }
-
+    public void deleteClasses(ActionEvent event) {
         try {
-            ClassDto classDto = classController.searchClass(getSelectedClass.getClassId());
-            idTxt.setText(classDto.getClassId());
-            subjectTxt.setText(classDto.getSubjectId());
-            courseTxt.setText(classDto.getCourseId());
-            lectureTxt.setText(classDto.getLectureId());
-            dateTxt.setValue(classDto.getDate());
+            String rsp = classController.deleteClass(idTxt.getText());
+            clear(event);
+            loadTable();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(rsp);
+            alert.showAndWait();
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
+    public void searchClasses(){
+        ClassDto getSelectedClass = detailsTabel.getSelectionModel().getSelectedItem();
+        if(getSelectedClass == null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Row");
+        }
+
+        try {
+            ClassDto classDto = classController.searchClass(getSelectedClass.classId);
+            idTxt.setText(classDto.getClassId());
+            courseTxt.setText(classDto.getCourseId());
+            subjectTxt.setText(classDto.getSubjectId());
+            lectureTxt.setText(classDto.getLectureId());
+            dateTxt.setValue(classDto.getDate());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage());
+        }
+    }
 }

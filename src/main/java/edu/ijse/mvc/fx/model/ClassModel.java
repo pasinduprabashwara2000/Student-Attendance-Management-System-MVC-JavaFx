@@ -28,7 +28,7 @@ public class ClassModel {
     public String updateClass(ClassDto classDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE class SET course_id = ?, subject_name = ?, lecture_id = ?, date = ? WHERE class_id = ?";
+        String sql = "UPDATE class SET course_id = ?, subject_id = ?, lecture_id = ?, date = ? WHERE class_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1,classDto.getCourseId());
         st.setString(2,classDto.getSubjectId());
@@ -63,8 +63,8 @@ public class ClassModel {
         if (rst.next()){
             return new ClassDto(
                     rst.getString("class_id"),
-                    rst.getString("subject_id"),
                     rst.getString("course_id"),
+                    rst.getString("subject_id"),
                     rst.getString("lecture_id"),
                     rst.getDate("date").toLocalDate()
             );
@@ -87,8 +87,8 @@ public class ClassModel {
         while (rst.next()){
             classDtos.add(new ClassDto(
                     rst.getString("class_id"),
-                    rst.getString("subject_id"),
                     rst.getString("course_id"),
+                    rst.getString("subject_id"),
                     rst.getString("lecture_id"),
                     rst.getDate("date").toLocalDate()
             ));

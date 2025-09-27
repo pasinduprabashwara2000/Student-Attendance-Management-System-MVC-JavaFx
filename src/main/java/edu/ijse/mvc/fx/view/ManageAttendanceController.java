@@ -19,6 +19,12 @@ public class ManageAttendanceController {
     private final AttendanceController attendanceController = new AttendanceController();
 
     @FXML
+    private Label attendanceLabel;
+
+    @FXML
+    private TextField attendanceTxt;
+
+    @FXML
     private TableColumn<AttendanceDto, String> colCourseName;
 
     @FXML
@@ -31,7 +37,7 @@ public class ManageAttendanceController {
     private TableColumn<AttendanceDto, String> colLectureId;
 
     @FXML
-    private TableColumn<AttendanceDto, Objects> colStatus;
+    private TableColumn<AttendanceDto, String> colStatus;
 
     @FXML
     private TableColumn<AttendanceDto, String> colStudentName;
@@ -94,11 +100,11 @@ public class ManageAttendanceController {
     @FXML
     public void initialize(){
         colId.setCellValueFactory(new PropertyValueFactory<>("attendanceId"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colLectureId.setCellValueFactory(new PropertyValueFactory<>("lectureId"));
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         colCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         colSubjectName.setCellValueFactory(new PropertyValueFactory<>("subjectName"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         loadTable();
     }
@@ -121,8 +127,9 @@ public class ManageAttendanceController {
 
     @FXML
     void Clear(ActionEvent event) {
-        studentTxt.setText("");
+        attendanceTxt.setText("");
         lectureTxt.setText("");
+        studentTxt.setText("");
         courseTxt.setText("");
         subjectTxt.setText("");
         datePicker.setValue(null);
@@ -132,13 +139,10 @@ public class ManageAttendanceController {
     @FXML
     void navigateDelete(ActionEvent event) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(ManageAttendanceController.class.getResource("/edu/ijse/mvc/fx/DeleteMassage.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Delete Attendance");
-                stage.setResizable(false);
-                stage.show();
+               String rsp = attendanceController.deleteAttendance(Integer.parseInt(attendanceTxt.getText()));
+                new Alert(Alert.AlertType.INFORMATION,rsp);
+                Clear(event);
+                loadTable();
             } catch (Exception e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
@@ -148,10 +152,10 @@ public class ManageAttendanceController {
     void navigateSave(ActionEvent event) {
         try {
             AttendanceDto attendanceDto = new AttendanceDto(
-                    0,
+                    Integer.parseInt(attendanceTxt.getText()),
                     datePicker.getValue(),
-                    studentTxt.getText(),
                     lectureTxt.getText(),
+                    studentTxt.getText(),
                     courseTxt.getText(),
                     subjectTxt.getText(),
                     statusPicker.getValue()
@@ -169,10 +173,10 @@ public class ManageAttendanceController {
     void navigateUpdate(ActionEvent event) {
             try{
                 AttendanceDto attendanceDto = new AttendanceDto(
-                        1,
+                        Integer.parseInt(attendanceTxt.getText()),
                         datePicker.getValue(),
-                        studentTxt.getText(),
                         lectureTxt.getText(),
+                        studentTxt.getText(),
                         courseTxt.getText(),
                         subjectTxt.getText(),
                         statusPicker.getValue()
@@ -195,9 +199,10 @@ public class ManageAttendanceController {
 
         try {
             AttendanceDto attendanceDto = attendanceController.searchAttendance(getSelectedAttendance.getAttendanceId());
+                    attendanceTxt.setText(String.valueOf(attendanceDto.getAttendanceId()));
                     datePicker.setValue(attendanceDto.getDate());
-                    studentTxt.setText(attendanceDto.getStudentName());
                     lectureTxt.setText(attendanceDto.getLectureId());
+                    studentTxt.setText(attendanceDto.getStudentName());
                     courseTxt.setText(attendanceDto.getCourseName());
                     subjectTxt.setText(attendanceDto.getSubjectName());
                     statusPicker.setValue(attendanceDto.getStatus());

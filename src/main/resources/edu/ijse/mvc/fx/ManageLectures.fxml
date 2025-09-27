@@ -67,9 +67,9 @@
       </Button>
       <TableView fx:id="detailsTabel" layoutX="55.0" layoutY="252.0" onMouseClicked="#searchLecture" prefHeight="339.0" prefWidth="939.0" stylesheets="@css/style2.css">
         <columns>
-            <TableColumn fx:id="idColmn" prefWidth="179.0" text="lect_id" />
-            <TableColumn fx:id="nameColmn" prefWidth="437.0" text="lect_Name" />
-            <TableColumn fx:id="contactColmn" prefWidth="322.0" text="contact_Number" />
+            <TableColumn fx:id="idColmn" prefWidth="179.0" text="Lecture ID" />
+            <TableColumn fx:id="nameColmn" prefWidth="437.0" text="Lecture Name" />
+            <TableColumn fx:id="contactColmn" prefWidth="322.0" text="Contact Number" />
         </columns>
       </TableView>
    </children>

@@ -67,9 +67,9 @@
         </TextField>
         <TableView fx:id="detailsTable" layoutX="51.0" layoutY="265.0" prefHeight="331.0" prefWidth="956.0" stylesheets="@css/style2.css">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="285.0" text="course_id" />
-                <TableColumn fx:id="subject_id" prefWidth="322.0" text="subject_id" />
-                <TableColumn fx:id="subject_name" prefWidth="348.0" text="subject_name" />
+                <TableColumn fx:id="course_id" prefWidth="285.0" text="Course ID" />
+                <TableColumn fx:id="subject_id" prefWidth="322.0" text="Subject ID" />
+                <TableColumn fx:id="subject_name" prefWidth="348.0" text="Subject Name" />
             </columns>
         </TableView>
     </children>

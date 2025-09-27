@@ -18,7 +18,7 @@ public class ManageSubjectsController {
     private TextField courseTxt;
 
     @FXML
-    private TableColumn<SubjectDto,String> course_id;
+    private TableColumn<SubjectDto, String> course_id;
 
     @FXML
     private Button deleteBtn;
@@ -55,10 +55,15 @@ public class ManageSubjectsController {
 
     @FXML
     public void initialize() {
-
         subject_id.setCellValueFactory(new PropertyValueFactory<>("subjectID"));
         subject_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("courseID"));
+
+        detailsTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                searchSubject();
+            }
+        });
 
         loadAllSubjects();
     }
@@ -66,19 +71,10 @@ public class ManageSubjectsController {
     private void loadAllSubjects() {
         try {
             detailsTable.getItems().clear();
-            detailsTable.getItems().addAll(subjectController.getAllSubjects());
+            detailsTable.getItems().addAll(subjectController.getAllSubject());
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }
-
-        detailsTable.setOnMouseClicked(event -> {
-            if(event.getClickCount() == 1){
-                searchSubject();
-            }
-        });
-
     }
 
     @FXML
@@ -90,84 +86,67 @@ public class ManageSubjectsController {
 
     @FXML
     void saveSubjects(ActionEvent event) {
-
         try {
             SubjectDto subjectDto = new SubjectDto(
                     idTxt.getText(),
-                    nameTxt.getText(),
-                    courseTxt.getText()
+                    courseTxt.getText(),
+                    nameTxt.getText()
             );
             String rsp = subjectController.addSubject(subjectDto);
-            detailsTable.getItems().add(subjectDto);
+            loadAllSubjects();
             clear(event);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(rsp);
-            alert.showAndWait();
-
+            new Alert(Alert.AlertType.INFORMATION, rsp).showAndWait();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }
     }
 
     @FXML
     void updateSubjects(ActionEvent event) {
-
         try {
             SubjectDto subjectDto = new SubjectDto(
                     idTxt.getText(),
-                    nameTxt.getText(),
-                    courseTxt.getText()
+                    courseTxt.getText(),
+                    nameTxt.getText()
             );
             String rsp = subjectController.updateSubject(subjectDto);
             loadAllSubjects();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(rsp);
-            alert.showAndWait();
-
+            new Alert(Alert.AlertType.INFORMATION, rsp).showAndWait();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }
     }
 
     @FXML
     void deleteSubjects(ActionEvent event) {
-
         try {
             String rsp = subjectController.deleteSubject(idTxt.getText());
             loadAllSubjects();
             clear(event);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(rsp);
-            alert.showAndWait();
-
+            new Alert(Alert.AlertType.INFORMATION, rsp).showAndWait();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
         }
     }
 
     @FXML
-    public void searchSubject(){
-
-        SubjectDto getSelectedItem = detailsTable.getSelectionModel().getSelectedItem();
-
-        if(getSelectedItem == null){
-            new Alert(Alert.AlertType.ERROR,"Please Select Row").showAndWait();
+    public void searchSubject() {
+        SubjectDto selectedItem = detailsTable.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            new Alert(Alert.AlertType.ERROR, "Please Select Row").showAndWait();
+            return;
         }
-
         try {
-            SubjectDto subjectDto = subjectController.searchSubject(getSelectedItem.getSubjectID());
+            SubjectDto subjectDto = subjectController.searchSubject(selectedItem.getSubjectID());
+            if (subjectDto == null) {
+                new Alert(Alert.AlertType.WARNING, "Subject not found!").showAndWait();
+                return;
+            }
             idTxt.setText(subjectDto.getSubjectID());
             nameTxt.setText(subjectDto.getName());
             courseTxt.setText(subjectDto.getCourseID());
         } catch (Exception e) {
-            new Alert(Alert.AlertType.INFORMATION,e.getMessage()).showAndWait();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
         }
-
     }
 }

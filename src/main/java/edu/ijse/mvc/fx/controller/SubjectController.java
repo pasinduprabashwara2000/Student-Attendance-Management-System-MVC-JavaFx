@@ -24,7 +24,7 @@ public class SubjectController {
         return subjectModel.searchSubject(subject_id);
     }
 
-    public ArrayList <SubjectDto> getAllSubjects() throws Exception{
+    public ArrayList <SubjectDto> getAllSubject() throws Exception{
         return subjectModel.getAllSubjects();
     }
 

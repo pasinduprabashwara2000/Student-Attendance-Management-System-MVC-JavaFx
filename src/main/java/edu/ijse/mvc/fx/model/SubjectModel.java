@@ -25,10 +25,10 @@ public class SubjectModel {
     public String updateSubject(SubjectDto subjectDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE subject SET subject_name = ? , course_id = ? WHERE subject_id = ?";
+        String sql = "UPDATE subject SET course_id = ?, subject_name = ? WHERE subject_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, subjectDto.getName());
-        st.setString(2, subjectDto.getCourseID());
+        st.setString(1, subjectDto.getCourseID());
+        st.setString(2,subjectDto.getName());
         st.setString(3, subjectDto.getSubjectID());
 
         return st.executeUpdate() > 0 ? "Subject Updated Successfully" : "Subject Updated Failed";
